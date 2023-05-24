@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-mark-o-s-get-after-it-m33jpsehe6.us2.codeanyapp.com',
+    '8000-mark-o-s-get-after-it-glhx1hds4h.us2.codeanyapp.com',
     'get-after-it-pp4.herokuapp.com',
     'localhost'
     ]
