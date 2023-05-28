@@ -37,3 +37,7 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 ---
 
 Happy coding!
+
+# ** Get After It - Project Portfolio 4**
+
+This is a gym booking website where members are able to book limited spaces fitness classes and personal training sessions.
