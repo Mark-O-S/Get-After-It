@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+
+    <table>
+        {% for personal_training in personal_trainings %}
+        <tr>
+            <td>{{ personal_training.available }}</td>
+            <td>{{ personal_training.user_id }}</td>
+            <td>{{ personal_training.date_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
