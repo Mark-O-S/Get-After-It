@@ -5,6 +5,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/0649e90160.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google fonts links -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +32,8 @@
 <body>
     <!-- Navigation bar-->
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <div>
-            <a href="">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
                 <img src="https://res.cloudinary.com/dfv7uge9t/image/upload/v1685228417/GetAfterIt%20Imgs/apple-icon-72x72_bx0xpb.png"
                     alt="logo image">
                 Get After It
@@ -37,8 +42,8 @@
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div>
-                <ul>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
                     </li>
@@ -48,40 +53,49 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Opening Hours</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sign Up</a>
+                        <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Main block of content-->
+    <main class="flex-shrink-0 main-bg">
+        {% block content %}
+        <!-- Content Goes here -->
+        {% endblock content %}
+    </main>
+
     <!-- Footer -->
-    <footer>
-        <a href="https://github.com/Mark-O-S">Made by Mark O'Sullivan</a>
-        <a href="#">
-            <img src="https://res.cloudinary.com/dfv7uge9t/image/upload/v1685228417/GetAfterIt%20Imgs/apple-icon-72x72_bx0xpb.png"
-                alt="logo image">
+    <footer class="footer container-fluid d-flex justify-content-center py-3">
+
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-link"
+            aria-label="Facebook">
+            <i class="fa-brands fa-facebook social-icon"></i>
         </a>
-        <ul class="nav col-12 col-sm-4 col-md-4 justify-content-end align">
-            <li class="ms-3">
-                <a class="text-muted" href="https://www.facebook.com/" target="_blank">
-                    <i class="fab fa-facebook"></i>
-                </a>
-            </li>
-            <li class="ms-3">
-                <a class="text-muted" href="https://www.twitter.com/" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </li>
-            <li class="ms-3">
-                <a class="text-muted" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i>
-                </a>
-            </li>
-        </ul>
+
+        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="social-link"
+            aria-label="Twitter">
+            <i class="fa-brands fa-twitter social-icon"></i>
+        </a>
+
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link"
+            aria-label="Instagram">
+            <i class="fa-brands fa-instagram social-icon"></i>
+        </a>
+
     </footer>
 
 </body>
