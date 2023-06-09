@@ -1,0 +1,23 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: white;
+}
+
+/* Footer */
+
+footer {
+    margin: auto 30px;
+}
+
+footer i {
+    font-size: 2rem;
+}
+
+/* Jumbotron box */
+
+.jumbotron {
+    padding: 30px;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    background-color: rgba(128, 128, 128, 0.5);
+}
