@@ -2,15 +2,17 @@
 
 {% block content %}
 
+<!-- Hero image and jumbotron -->
 <div class="card img-fluid">
-    
-    <img src="https://res.cloudinary.com/dfv7uge9t/image/upload/v1685228482/GetAfterIt%20Imgs/weight-plates_st1bgg.jpg" class="card-img" style="width: 100%; height: 100%"
-        alt="gym floor">
+
+    <img src="https://res.cloudinary.com/dfv7uge9t/image/upload/v1685228482/GetAfterIt%20Imgs/weight-plates_st1bgg.jpg"
+        class="card-img" style="width: 100%; height: 100%" alt="gym floor">
     <div class="card-img-overlay d-flex align-items-center justify-content-center">
         <div class="text-light">
             <div class="jumbotron text-center">
                 <h1 class="display-4 jumbotron-header">Get After It</h1>
-                <p class="jumbotron-text blockquote mt-2">Push past your limits and just <strong>Get After It</strong></p>
+                <p class="jumbotron-text blockquote mt-2">Push past your limits and just <strong>Get After It</strong>
+                </p>
                 <p>Book a personal training or fitness classes!</p>
                 {% if user.is_authenticated %}
                 <a href="#"></a>
@@ -22,6 +24,51 @@
         </div>
     </div>
 </div>
+
+<!-- Fitness classes schedule -->
+<div class="container text-center ">
+    <h1>Fitness Class Schedule</h1>
+    <div class="timetable-container">
+        <table class="timetable-table">
+            <tr>
+
+                <th>
+                    <h4><strong>Spinning</strong></h4>
+                    <h4>Monday, <br> Wednesday <br> & Friday</h4>
+                </th>
+                <th>
+                    <h4><strong>TRX</strong></h4>
+                    <h4>Tuesday &<br> Wednesday</h4>
+                </th>
+            </tr>
+
+            <tr>
+
+                <td>
+                    <p><strong>Morning Classes</strong></p>
+                    <p>07:00 - 08:00</p>
+                    <p>08:00 - 09:00</p>
+                    <p>09:00 - 10:00</p>
+                    <p><strong>Evening Classes</strong></p>
+                    <p>18:00 - 19:00</p>
+                    <p>19:00 - 20:00</p>
+                    <p>20:00 - 21:00</p>
+                </td>
+
+                <td>
+                    <p><strong>Morning Classes</strong></p>
+                    <p>07:00 - 08:00</p>
+                    <p>08:00 - 09:00</p>
+                    <p>09:00 - 10:00</p>
+                    <p><strong>Evening Classes</strong></p>
+                    <p>18:00 - 19:00</p>
+                    <p>19:00 - 20:00</p>
+                    <p>20:00 - 21:00</p>
+                </td>
+        </table>
+    </div>
+</div>
+
 
 
 {%endblock%}
