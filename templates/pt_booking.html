@@ -31,13 +31,25 @@
             <h3>Bookings made</h3>
             <h4> Date and time: </h4>
             {% for sessions in booked_sessions %}
-                <form action="/delete_personal_training_session">
-                    <p> {{ sessions.date_time }}</p>
-                    <button type="submit" class="btn btn-primary">Delete Booking</button>
-                    <input type="hidden" id="delete_session" name="delete_session"
-                    value='{{ sessions.date_time }}'>
-                    <p></p>
-                </form>
+                <p> {{ sessions.date_time }}</p>
+                <table>
+                    <tr>
+                        <td>
+                            <form action="/update_personal_training_session">
+                                <button type="submit" class="btn btn-primary">Edit Booking</button>
+                                <input type="hidden" id="update_session" name="update_session" value='{{ sessions.date_time }}'>
+                                <p></p>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/delete_personal_training_session">
+                                <button type="submit" class="btn btn-primary">Delete Booking</button>
+                                <input type="hidden" id="delete_session" name="delete_session" value='{{ sessions.date_time }}'>
+                                <p></p>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             {% endfor %}
 
         </div>
