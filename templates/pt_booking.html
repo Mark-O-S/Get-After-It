@@ -12,7 +12,7 @@
                 You can book personal training or gym sessions.
             </p>
 
-            <form action="/create_personal_training_session" method="post">
+            <form action="/create_personal_training_session" method="POST">
                 <input type="date" id="personal_training_dates" onchange="dateData(event);" />
                 <input type="hidden" id="personal_training_date" name="personal_training_date" value=''>
 
@@ -31,9 +31,9 @@
             <h3>Bookings made</h3>
             <h4> Date and time: </h4>
             {% for sessions in booked_sessions %}
-                <p> {{ sessions.date_time }}</p>
-                <button type="submit" method="delete" class="btn btn-primary">Delete Booking</button>
-                <p></p>
+            <p> {{ sessions.date_time }}</p>
+            <button type="submit" method="delete" class="btn btn-primary">Delete Booking</button>
+            <p></p>
             {% endfor %}
 
         </div>
