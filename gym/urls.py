@@ -7,4 +7,6 @@ urlpatterns = [
     path('pt_booking/', views.set_up_personal_training_page),
     path('create_personal_training_session',
          views.create_personal_training_session),
+    path('delete_personal_training_session',
+         views.delete_personal_training_session),
 ]
