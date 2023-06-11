@@ -12,7 +12,7 @@
                 You can book personal training or gym sessions.
             </p>
 
-            <form action="/update_personal_training">
+            <form action="/create_personal_training_session">
                 <!-- <div class="form-group form-control-plaintext">
                     <input type="hidden" id="pk_{{ personal_training.pk }}" name="pk"
                         value="{{ personal_training.pk }}">
@@ -39,9 +39,10 @@
 
             <h3>Bookings made</h3>
             {% for sessions in booked_sessions %}
-                <h4> Date and time: </h4>
-                <p> {{ sessions.date_time }}</p>
-                <p> {{ sessions.booked_by }}</p>
+            <h4> Date and time: </h4>
+            <p> {{ sessions.date_time }}</p>
+            <p> {{ sessions.booked_by }}</p>
+            <button type="submit"></button>
             {% endfor %}
 
         </div>

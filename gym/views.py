@@ -64,7 +64,7 @@ def format_datetime(date, time):
     return date_time
 
 
-def update_personal_training_session(request):
+def create_personal_training_session(request):
     personal_training_booked_sessions = get_personal_training_sessions(
         request.user)
 
