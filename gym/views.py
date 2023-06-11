@@ -37,16 +37,18 @@ def get_personal_training_sessions(user):
 
 def set_up_personal_training_page(request):
 
-    # Get all pt sessions that the user booked
-    personal_training_booked_sessions = get_personal_training_sessions(
-        request.user)
+    if request.method == 'GET':
+        # Get all pt sessions that the user booked
+        personal_training_booked_sessions = get_personal_training_sessions(
+            request.user)
 
-    # Have to create a range value since it doesn't exist in template django
-    context = {
-        'times_list': TIMES_LIST,
-        'booked_sessions': personal_training_booked_sessions
-    }
-    return render(request, "pt_booking.html", context)
+        # Have to create a range value since it doesn't exist in template django
+        context = {
+            'times_list': TIMES_LIST,
+            'booked_sessions': personal_training_booked_sessions,
+            'session_message': ""
+        }
+        return render(request, "pt_booking.html", context)
 
 
 def book_personal_training(user, datetime):
@@ -68,8 +70,8 @@ def create_personal_training_session(request):
     personal_training_booked_sessions = get_personal_training_sessions(
         request.user)
 
-    if request.method == 'GET':  # If the form has been submitted...
-        form = request.GET  # A form bound to the POST data
+    if request.method == 'POST':  # If the form has been submitted...
+        form = request.POST  # A form bound to the POST data
         personal_training_date = form["personal_training_date"]
         time = form["times_list"]
         filter_datetime = format_datetime(personal_training_date, time)
