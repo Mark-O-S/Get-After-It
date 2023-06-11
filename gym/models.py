@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class PersonalTraining(models.Model):
@@ -7,8 +8,12 @@ class PersonalTraining(models.Model):
     """
 
     available = models.BooleanField(null=False, blank=False, default=True)
-    user_id = models.CharField(max_length=50, null=True, blank=True)
+    booked_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
+                                  blank=True, related_name="booked_by")
     date_time = models.DateTimeField(null=False, blank=False)
 
     def __str__(self):
         return str(self.date_time)
+
+    class Meta:
+        ordering = ('date_time',)

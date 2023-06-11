@@ -4,5 +4,6 @@ from gym import views
 
 urlpatterns = [
     path('', views.Home, name="Home"),
-    path('gym_booking/', views.get_personal_training_sessions),
+    path('pt_booking/', views.set_up_personal_training_page),
+    path('update_personal_training', views.update_personal_training_session),
 ]

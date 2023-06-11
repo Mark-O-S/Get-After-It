@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2 text-dark">
+
+            <h3>Personal Training</h3>
+            <p>Welcome to Get After It. If you have not created an account yet, then please
+                You can book personal training or gym sessions.
+            </p>
+
+            <form action="/update_personal_training">
+                <!-- <div class="form-group form-control-plaintext">
+                    <input type="hidden" id="pk_{{ personal_training.pk }}" name="pk"
+                        value="{{ personal_training.pk }}">
+
+                    <label for="Available">{{ personal_training.available }}</label>
+                    <label for="UserId">{{ personal_training.user_id }}</label>
+                    <label for="DateTime">{{ personal_training.date_time }}</label>
+                </div> -->
+                <input type="date" id="personal_training_dates" onchange="dateData(event);" />
+                <input type="hidden" id="personal_training_date" name="personal_training_date" value=''>
+
+
+                <select name="times_list" id="times_list" onchange="timeData(event);">
+                    {% for times in times_list %}
+                    <option value="{{ times }}">{{ times }}</option>
+                    {% endfor %}
+                </select>
+                <!-- <input type="hidden" id="time_chosen" name="time_chosen" value='7:00'> -->
+
+                <button type="submit" class="btn btn-primary" value="Book">Book</button>
+            </form>
+
+            <p>{{ session_message }}</p>
+
+            <p>Bookings made</p>
+            {% for personal_training in personal_trainings %}
+            <p>Booking</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

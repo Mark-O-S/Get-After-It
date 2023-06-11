@@ -30,10 +30,10 @@
 </head>
 
 <body>
-    <!-- Navigation bar--> 
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <!-- Navigation bar-->
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="https://res.cloudinary.com/dfv7uge9t/image/upload/v1685228417/GetAfterIt%20Imgs/apple-icon-72x72_bx0xpb.png"
                     alt="logo image">
                 Get After It
@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Classes</a>
@@ -66,10 +66,25 @@
                     </li>
                     {% endif %}
 
+
+
                 </ul>
             </div>
         </div>
     </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
     <!-- Main block of content-->
     <main class="flex-shrink-0 main-bg">
@@ -82,19 +97,19 @@
     <footer class="footer container-fluid d-flex flex-column align-items-center pt-4 pb-1">
         <!-- Add flex-column and align-items-center classes to the footer -->
         <div class="row d-flex justify-content-center">
-            <p>&copy;2023 by:
+            <p>&copy;2023 by
                 <a target="_blank" href="https://github.com/Mark-O-S" style="text-decoration: none;">
                     <strong class="text-info">Mark O'Sullivan</strong>
                 </a>
             </p>
         </div>
-    
+
         <div class="row d-flex justify-content-center mt-1">
             <div class="text-center">
                 <ul class="list-unstyled list-inline">
                     <li class="list-inline-item">
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-link"
-                            aria-label="Facebook">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"
+                            class="social-link" aria-label="Facebook">
                             <i class="fa-brands fa-facebook social-icon"></i>
                         </a>
                     </li>
@@ -105,8 +120,8 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link"
-                            aria-label="Instagram">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                            class="social-link" aria-label="Instagram">
                             <i class="fa-brands fa-instagram social-icon"></i>
                         </a>
                     </li>
@@ -115,6 +130,23 @@
         </div>
     </footer>
 
+    <script>
+        function timeData(event) {
+            const times_list = document.getElementById("times_list");
+            document.getElementById("time_chosen").value = times_list.value;
+        }
+
+        function dateData(event) {
+            const personalTrainingDate = document.getElementById("personal_training_dates");
+            document.getElementById("personal_training_date").value = personalTrainingDate.value;
+        }
+
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 2500);
+    </script>
 
 </body>
 

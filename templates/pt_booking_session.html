@@ -12,16 +12,9 @@
                 You can book personal training or gym sessions.
             </p>
 
-
-            <table>
-                {% for personal_training in personal_trainings %}
-                <tr>
-                    <td>{{ personal_training.available }}</td>
-                    <td>{{ personal_training.user_id }}</td>
-                    <td>{{ personal_training.date_time }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+            <p>{{ booking_date }}</p>
+            <p>{{ time }}</p>
+            <p>{{ booking_status }}</p>
         </div>
     </div>
 </div>

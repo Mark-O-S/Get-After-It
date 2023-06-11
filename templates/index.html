@@ -25,50 +25,95 @@
     </div>
 </div>
 
-<!-- Fitness classes schedule -->
-<div class="container text-center ">
-    <h1>Fitness Class Schedule</h1>
-    <div class="timetable-container">
-        <table class="timetable-table">
-            <tr>
 
-                <th>
-                    <h4><strong>Spinning</strong></h4>
-                    <h4>Monday, <br> Wednesday <br> & Friday</h4>
-                </th>
-                <th>
-                    <h4><strong>TRX</strong></h4>
-                    <h4>Tuesday &<br> Wednesday</h4>
-                </th>
-            </tr>
-
-            <tr>
-
-                <td>
-                    <p><strong>Morning Classes</strong></p>
-                    <p>07:00 - 08:00</p>
-                    <p>08:00 - 09:00</p>
-                    <p>09:00 - 10:00</p>
-                    <p><strong>Evening Classes</strong></p>
-                    <p>18:00 - 19:00</p>
-                    <p>19:00 - 20:00</p>
-                    <p>20:00 - 21:00</p>
-                </td>
-
-                <td>
-                    <p><strong>Morning Classes</strong></p>
-                    <p>07:00 - 08:00</p>
-                    <p>08:00 - 09:00</p>
-                    <p>09:00 - 10:00</p>
-                    <p><strong>Evening Classes</strong></p>
-                    <p>18:00 - 19:00</p>
-                    <p>19:00 - 20:00</p>
-                    <p>20:00 - 21:00</p>
-                </td>
-        </table>
+<!-- Opening times -->
+<div class="container-fluid opening-times-container">
+    <h1>Opening Times</h1>
+    <p><strong>Our opening times are:</strong></p>
+    <div class="">
+        <div class="row">
+            <div class="col-sm-3 day">Monday:</div>
+            <div class="col-sm-9">07:00 - 22:00</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 day">Tuesday:</div>
+            <div class="col-sm-9">07:00 - 22:00</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 day">Wednesday:</div>
+            <div class="col-sm-9">07:00 - 22:00</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 day">Thursday:</div>
+            <div class="col-sm-9">07:00 - 22:00</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 day">Friday:</div>
+            <div class="col-sm-9">07:00 - 22:00</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 day">Saturday:</div>
+            <div class="col-sm-9">08:00 - 18:00</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 day">Sunday:</div>
+            <div class="col-sm-9">08:00 - 18:00</div>
+        </div>
     </div>
 </div>
 
+
+<!-- Fitness classes schedule -->
+<div class="container-fluid text-center fitness-class-schedule-container">
+    <h1>Fitness Class Schedule</h1>
+    <div class="timetable-container">
+        <div class="row">
+            <div class="col">
+                <h4><strong>Spinning</strong></h4>
+                <h4>Monday, <br> Wednesday <br> & Friday</h4>
+            </div>
+            <div class="col">
+                <h4><strong>TRX</strong></h4>
+                <h4>Tuesday & Wednesday</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p><strong>Morning Classes</strong></p>
+                <p>07:00 - 08:00</p>
+                <p>08:00 - 09:00</p>
+                <p>09:00 - 10:00</p>
+                <p><strong>Evening Classes</strong></p>
+                <p>18:00 - 19:00</p>
+                <p>19:00 - 20:00</p>
+                <p>20:00 - 21:00</p>
+            </div>
+            <div class="col">
+                <p><strong>Morning Classes</strong></p>
+                <p>07:00 - 08:00</p>
+                <p>08:00 - 09:00</p>
+                <p>09:00 - 10:00</p>
+                <p><strong>Evening Classes</strong></p>
+                <p>18:00 - 19:00</p>
+                <p>19:00 - 20:00</p>
+                <p>20:00 - 21:00</p>
+            </div>
+        </div>
+
+        <!-- If user is logged in, allow option to book a session -->
+        {% if user.is_authenticated %}
+        <div class="row">
+            <div class="col">
+                <h1>Book Session</h1>
+                <div>
+                    <a id="personal-training" href="/pt_booking">Personal Training</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
 
 
 {%endblock%}

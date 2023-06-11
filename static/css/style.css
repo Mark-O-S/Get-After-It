@@ -1,20 +1,28 @@
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: white;
+    /*  */
 }
 
-/* Footer */
 
+/* Nav Bar */
+.nav-item {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+}
+
+
+/* Footer */
 footer {
     margin: auto 30px;
 }
+
 
 footer i {
     font-size: 2rem;
 }
 
-/* Jumbotron box */
 
+/* Jumbotron box */
 .jumbotron {
     padding: 30px;
     border: 3px solid rgba(0, 0, 0, 0.5);
@@ -22,26 +30,30 @@ footer i {
     background-color: rgba(128, 128, 128, 0.5);
 }
 
+
+/* Opening times */
+
+.opening-times-container {
+    background-color: #F9AB36;
+    background-size: cover;
+}
+
+.day {
+    font-weight: bold;
+}
+
+
 /* Fitness class timetable */
-.timetable-container {
-    margin-top: 30px;
-}
-
-.timetable-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.timetable-table th,
-.timetable-table td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
+.fitness-class-schedule-container{
+    background-color: #F9AB36;
+    background-size: cover;
 }
 
 .class-name {
     font-weight: bold;
 }
+
+
 
 /* Media Queries */
 /* For screen sizes with a maximum width of 767px */
@@ -51,20 +63,5 @@ footer i {
     .jumbotron {
         border: none;
         background-color: transparent;
-    }
-}
-
-/* For screen sizes with a minimum width of 767px */
-@media (min-width: 767px) {
-
-    /* Fitness class schedule */
-    .timetable-table th,
-    .timetable-table td {
-        padding: 5px;
-        font-size: 0.8rem;
-    }
-
-    .timetable-table p {
-        margin-bottom: 5px;
     }
 }
