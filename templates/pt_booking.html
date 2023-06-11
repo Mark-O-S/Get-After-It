@@ -37,9 +37,11 @@
 
             <p>{{ session_message }}</p>
 
-            <p>Bookings made</p>
-            {% for personal_training in personal_trainings %}
-            <p>Booking</p>
+            <h3>Bookings made</h3>
+            {% for sessions in booked_sessions %}
+                <h4> Date and time: </h4>
+                <p> {{ sessions.date_time }}</p>
+                <p> {{ sessions.booked_by }}</p>
             {% endfor %}
 
         </div>

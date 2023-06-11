@@ -29,83 +29,78 @@ def set_up_pt_week():
 
 
 def get_personal_training_sessions(user):
-    datetime_now = datetime.today()
-    filter_week_from_today = datetime_now + timedelta(days=WEEK_LONG)
-
     personal_trainings = PersonalTraining.objects.filter(
-        booked_by=user, date_time__gt=datetime_now,
-        date_time__lt=filter_week_from_today)
+        booked_by=user)
 
     return personal_trainings
 
 
-def book_personal_training(request):
-    if request.method == 'GET':
-        user = request.user
-        return user
-
-    # Check if the date time is available
-    # personal_trainings = PersonalTraining.objects.filter(
-    #     booked_by=user, date_time)
-
-    # Check if the date time is available
-    # PersonalTraining.objects.create(
-    #     subject=subject + ": " + user_profile.get_full_name(),
-    #     message=body,
-    #     user=user_profile)
-
-
 def set_up_personal_training_page(request):
 
-    # Get all pt sessions that are on the current day and for the next 7 days
-    # This is for displaying the booked sessions upcoming for the next 7 days
-    # personal_training_sessions = get_personal_training_sessions(
-    #     request.user)
+    # Get all pt sessions that the user booked
+    personal_training_booked_sessions = get_personal_training_sessions(
+        request.user)
 
     # Have to create a range value since it doesn't exist in template django
     context = {
-        'times_list': TIMES_LIST
+        'times_list': TIMES_LIST,
+        'booked_sessions': personal_training_booked_sessions
     }
     return render(request, "pt_booking.html", context)
 
+
+def book_personal_training(user, datetime):
+    personal_training_object = PersonalTraining.objects.create(
+        date_time=datetime, booked_by=user)
+    personal_training_object.save()
+    return personal_training_object
+
+
+def format_datetime(date, time):
+    format_data = "%Y-%m-%d %H:%M:%S"
+    formatted_date = f"{date} {time}:00"
+    date_time = datetime.strptime(formatted_date,
+                                  format_data)
+    return date_time
+
+
 def update_personal_training_session(request):
-    # Try and book a session
-    booked_session = book_personal_training(request)
+    personal_training_booked_sessions = get_personal_training_sessions(
+        request.user)
 
     if request.method == 'GET':  # If the form has been submitted...
         form = request.GET  # A form bound to the POST data
         personal_training_date = form["personal_training_date"]
         time = form["times_list"]
-        booking_status = "There is an issue"
-
-        format_data = "%Y-%m-%d %H:%M:%S"
-        personal_training_date = f"{personal_training_date} {time}:00"
-        filter_datetime = datetime.strptime(personal_training_date,
-                                            format_data)
+        filter_datetime = format_datetime(personal_training_date, time)
 
         personal_training_data = {}
+        session_message = ""
+        redirect_url = "pt_booking.html"
+
         # Check if the date and time user chose is available
         try:
             personal_training_data = PersonalTraining.objects.get(
                 date_time__date=filter_datetime.date(),
                 date_time__hour=filter_datetime.hour)
             personal_training_data = {personal_training_data}
-        except PersonalTraining.DoesNotExist:
-            booking_status = "This session is available"
-
-        if len(personal_training_data) > 0:
             session_message = "This session is not available"
             messages.add_message(request, messages.ERROR, session_message)
-            context = {
-                'booking_status': booking_status,
-                'session_message': session_message,
-                'times_list': TIMES_LIST
-            }
-            return render(request, "pt_booking.html", context)
+        except PersonalTraining.DoesNotExist:
+            # Session is available to book for the user
+            booked_session = book_personal_training(request.user,
+                                                    filter_datetime)
+            personal_training_data = {booked_session}
+            session_message = "Personal Training Session successfully booked"
+            messages.add_message(request, messages.INFO, session_message)
+            redirect_url = "pt_booking_session.html"
 
         context = {
+            'session_message': session_message,
             'booking_status': session_message,
             'booking_date': personal_training_data,
-            'time': time
+            'time': time,
+            'times_list': TIMES_LIST,
+            'booked_sessions': personal_training_booked_sessions
         }
-        return render(request, "pt_booking_session.html", context)
+        return render(request, redirect_url, context)
