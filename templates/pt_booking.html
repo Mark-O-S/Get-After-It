@@ -13,14 +13,6 @@
             </p>
 
             <form action="/create_personal_training_session" method="post">
-                <!-- <div class="form-group form-control-plaintext">
-                    <input type="hidden" id="pk_{{ personal_training.pk }}" name="pk"
-                        value="{{ personal_training.pk }}">
-
-                    <label for="Available">{{ personal_training.available }}</label>
-                    <label for="UserId">{{ personal_training.user_id }}</label>
-                    <label for="DateTime">{{ personal_training.date_time }}</label>
-                </div> -->
                 <input type="date" id="personal_training_dates" onchange="dateData(event);" />
                 <input type="hidden" id="personal_training_date" name="personal_training_date" value=''>
 
@@ -30,7 +22,6 @@
                     <option value="{{ times }}">{{ times }}</option>
                     {% endfor %}
                 </select>
-                <!-- <input type="hidden" id="time_chosen" name="time_chosen" value='7:00'> -->
 
                 <button type="submit" class="btn btn-primary" value="Book">Book</button>
             </form>
@@ -38,11 +29,11 @@
             <p>{{ session_message }}</p>
 
             <h3>Bookings made</h3>
-            {% for sessions in booked_sessions %}
             <h4> Date and time: </h4>
-            <p> {{ sessions.date_time }}</p>
-            <p> {{ sessions.booked_by }}</p>
-            <button type="submit"></button>
+            {% for sessions in booked_sessions %}
+                <p> {{ sessions.date_time }}</p>
+                <button type="submit" method="delete" class="btn btn-primary">Delete Booking</button>
+                <p></p>
             {% endfor %}
 
         </div>
