@@ -1,6 +1,6 @@
 body {
     font-family: 'Nunito', sans-serif;
-    /*  */
+    background-color: #D6DFE0;
 }
 
 
@@ -19,40 +19,36 @@ footer {
 
 footer i {
     font-size: 2rem;
+    color: #000000;
 }
 
+footer i:hover {
+    opacity: 0.7;
+}
 
 /* Jumbotron box */
 .jumbotron {
     padding: 30px;
     border: 3px solid rgba(0, 0, 0, 0.5);
     border-radius: 12px;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.3);
 }
 
 
 /* Opening times */
-
-.opening-times-container {
-    background-color: #F9AB36;
-    background-size: cover;
+#opening-times {
+    margin: 0 auto;
+    padding: 10px;
+    border: 3px solid;
+    border-radius: 12px;
+    width: 50%;
+    background-color: rgba(211, 211, 211, 0.5);
+    
 }
 
 .day {
     font-weight: bold;
 }
-
-
-/* Fitness class timetable */
-.fitness-class-schedule-container{
-    background-color: #F9AB36;
-    background-size: cover;
-}
-
-.class-name {
-    font-weight: bold;
-}
-
 
 
 /* Media Queries */
@@ -63,5 +59,10 @@ footer i {
     .jumbotron {
         border: none;
         background-color: transparent;
+    }
+
+    /* Opening Times */
+    #opening-times{
+        width: 75%;
     }
 }
