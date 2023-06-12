@@ -132,3 +132,26 @@ def delete_personal_training_session(request):
             'time': date_time,
         }
         return render(request, "pt_delete_session.html", context)
+
+
+def check_if_current_and_update_time_equal(current_time, update_time):
+    return True
+
+
+def update_personal_training_session(request):
+    if request.GET:
+        form = request.GET
+        current_booking_datetime = form[""]
+        date_time = form["edit_times_list"]
+
+        converted_date_time = convert_date_time(date_time)
+        PersonalTraining.objects.filter(date_time=converted_date_time)
+
+        session_message = "Personal Training Session successfully updated"
+        messages.add_message(request, messages.INFO, session_message)
+        context = {
+            'session_message': session_message,
+            'booking_status': session_message,
+            'time': date_time,
+        }
+        return render(request, "pt_update_session.html", context)
