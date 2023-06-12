@@ -34,22 +34,37 @@ footer i:hover {
     background-color: rgba(128, 128, 128, 0.3);
 }
 
+/* About Us*/
+#about-us-section {
+    padding: 20px;
+    border: 3px solid;
+    border-radius: 12px;
+    width: 40%;
+    background-color: #B5D9D1;
+}
 
 /* Opening times */
 #opening-times {
     margin: 0 auto;
-    padding: 10px;
+    padding: 20px;
     border: 3px solid;
     border-radius: 12px;
-    width: 50%;
+    width: 40%;
     background-color: rgba(211, 211, 211, 0.5);
-    
 }
 
 .day {
     font-weight: bold;
 }
 
+/* Book session */
+#book-session-link-btn {
+    padding: 20px;
+    border: 3px solid;
+    border-radius: 12px;
+    width: 40%;
+    
+}
 
 /* Media Queries */
 /* For screen sizes with a maximum width of 767px */
@@ -62,7 +77,12 @@ footer i:hover {
     }
 
     /* Opening Times */
-    #opening-times{
+    #opening-times {
+        width: 75%;
+    }
+
+    /* About Us*/
+    #about-us-section {
         width: 75%;
     }
 }

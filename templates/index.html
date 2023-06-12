@@ -25,6 +25,31 @@
     </div>
 </div>
 
+<div class="container" id="about-us-section">
+    <h1 class="text-center">About Us</h1>
+    <p>Welcome to <strong>Get After It Gym</strong></p>
+    <p>
+        We are one of Corks newest up and coming gyms. It includes state of
+        the art Cardio and Weight training equipment!
+    </p>
+    <p>
+        Our excellent qualified personal trainers and nutritionists are here
+        to ensure that you reach your goals. Our aim is to always make client
+        satisfaction at the top of our list of Goals and Objectives.
+    </p>
+    <p>
+        We intend on doing by setting a nice, friendly and relaxed atmosphere.
+        We are a gym where you can also retain your own anonymity whilst also
+        feeling like you are a part of the team.
+    </p>
+    <p>
+        We can set you up with an exercise as well as a nutritional program that
+        can cater to suit each and every individual. This means that our trainers
+        will design a program specifically for you at whatever stage you are in
+        your fitness journey!
+    </p>
+</div>
+
 
 <!-- Opening times -->
 <div class="container-fluid text-center">
@@ -62,22 +87,25 @@
             </div>
         </div>
     </div>
-
 </div>
 
-    <div class="container-fluid text-center">
-        <!-- If user is logged in, allow option to book a session -->
-        {% if user.is_authenticated %}
-        <div class="row">
-            <div class="col">
-                <h1>Book Session</h1>
-                <div>
-                    <a id="personal-training" href="/pt_booking">Personal Training</a>
-                </div>
+<!-- If user is logged in, allow option to book a session -->
+{% if user.is_authenticated %}
+<div class="container-fluid text-center" id="book-session-link-btn">
+    <div class="row">
+        <div class="col">
+            <h1>Book a Session</h1>
+            <p>Click the button below to book a Personal Training Session!</p>
+            <div>
+                <button id="personal-training" href="/pt_booking">
+                    Personal Training
+                </button>
+                <a id="personal-training" href="/pt_booking">Personal Training</a>
             </div>
         </div>
-        {% endif %}
     </div>
+    {% endif %}
+</div>
 
 
 
