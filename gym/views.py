@@ -58,6 +58,21 @@ def book_personal_training(user, datetime):
     return personal_training_object
 
 
+def update_personal_training(user, current_datetime, new_datetime):
+    try:
+        current_training_session = PersonalTraining.objects.get(
+            booked_by=user, date_time=current_datetime)
+
+        primary_key = current_training_session.pk
+
+        personal_training_object = PersonalTraining.objects.filter(
+            pk=primary_key, booked_by=user, date_time=current_datetime).update(
+            date_time=new_datetime)
+    except:
+        return {}
+    return personal_training_object
+
+
 def format_datetime(date, time):
     format_data = "%Y-%m-%d %H:%M:%S"
     formatted_date = f"{date} {time}:00"
@@ -107,6 +122,7 @@ def create_personal_training_session(request):
         return render(request, redirect_url, context)
 
 
+# Parameter example: June 28, 2023, 7 a.m.
 def convert_date_time(date_time):
     convert = date_time.split(" ")
     am_pm = CONVERT_AM_PM[convert[-1]]
@@ -114,6 +130,16 @@ def convert_date_time(date_time):
     date_time = "".join(convert)
 
     datetime_object = datetime.strptime(date_time, "%B%d,%Y,%I%p")
+    return datetime_object
+
+
+# Parameter example: June 28, 2023, 7 a.m.
+def convert_date_time_with_new_time(date_time, new_time):
+    convert = date_time.split(",")
+    formatted_new_time = f"{new_time}:00"
+    convert[-1] = formatted_new_time
+    date_time = "".join(convert)
+    datetime_object = datetime.strptime(date_time, "%B %d %Y%X")
     return datetime_object
 
 
@@ -134,24 +160,64 @@ def delete_personal_training_session(request):
         return render(request, "pt_delete_session.html", context)
 
 
-def check_if_current_and_update_time_equal(current_time, update_time):
-    return True
-
-
+# Check if the user is trying to book the same time, return error is yes
+# Check if the new time is available to book, return error if not
+# Check if the new time is available to book, return success if yes
 def update_personal_training_session(request):
+    personal_training_booked_sessions = get_personal_training_sessions(
+        request.user)
     if request.GET:
         form = request.GET
-        current_booking_datetime = form[""]
-        date_time = form["edit_times_list"]
+        current_booking_datetime = form["current_times_list"]
+        new_time = form["edit_times_list"]
+        personal_training_data = {}
+        session_message = ""
+        redirect_url = "pt_booking.html"
+        new_datetime = convert_date_time_with_new_time(
+            current_booking_datetime, new_time)
+        converted_current_date_time = convert_date_time(
+            current_booking_datetime)
 
-        converted_date_time = convert_date_time(date_time)
-        PersonalTraining.objects.filter(date_time=converted_date_time)
+        converted_current_hour = converted_current_date_time.hour
+        current_time = f"{converted_current_hour}:00"
+        # If the current time and new time match, no update happens - exit early
+        if current_time == new_time:
+            session_message = "This session is already booked"
+            messages.add_message(request, messages.INFO, session_message)
+            context = {
+                'session_message': session_message,
+                'booking_status': session_message,
+                'times_list': TIMES_LIST,
+                'personal_training_data': personal_training_data,
+                'booked_sessions': personal_training_booked_sessions
+            }
+            return render(request, redirect_url, context)
 
-        session_message = "Personal Training Session successfully updated"
-        messages.add_message(request, messages.INFO, session_message)
+        # Get the date from the current booking and use that to search if that
+        # date and new time are available
+        # Check if the date and time user chose is available
+        try:
+            personal_training_data = PersonalTraining.objects.get(
+                date_time=new_datetime)
+            personal_training_data = {personal_training_data}
+            session_message = f"This session is not available to book {new_datetime} {personal_training_data}"
+            messages.add_message(request, messages.ERROR, session_message)
+        except PersonalTraining.DoesNotExist:
+            # Session is available to book for the user
+
+            # Update the current personal training object with new date time
+            booked_session = update_personal_training(
+                request.user, converted_current_date_time, new_datetime)
+            personal_training_data = {booked_session}
+            session_message = "Personal Training Session successfully updated"
+            messages.add_message(request, messages.INFO, session_message)
+            redirect_url = "pt_update_session.html"
+
         context = {
             'session_message': session_message,
             'booking_status': session_message,
-            'time': date_time,
+            'times_list': TIMES_LIST,
+            'personal_training_data': personal_training_data,
+            'booked_sessions': personal_training_booked_sessions,
         }
-        return render(request, "pt_update_session.html", context)
+        return render(request, redirect_url, context)

@@ -28,18 +28,15 @@
 
             <p>{{ session_message }}</p>
 
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Edit Booking</button>
+
             <h3>Bookings made</h3>
             <h4> Date and time: </h4>
             {% for sessions in booked_sessions %}
             <p> {{ sessions.date_time }}</p>
             <table>
                 <tr>
-                    <td>
-                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" name="{{ sessions.date_time }}"
-                            onclick="updateHiddenDateTime();">
-                            Edit Booking</button>
-                    </td>
                     <td>
                         <form action="/delete_personal_training_session">
                             <button type="submit" class="btn btn-primary">Delete Booking</button>
@@ -64,8 +61,16 @@
 
                         <div class="modal-body">
                             <form action="/update_personal_training_session">
-                                <p>New booking time</p>
                                 <div class="row">
+                                    <p>Choose a booked Personal training session</p>
+                                    <select name="current_times_list" id="current_times_list">
+                                        {% for sessions in booked_sessions %}
+                                        <option value="{{ sessions.date_time }}">{{ sessions.date_time }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <p>Choose new time</p>
                                     <select name="edit_times_list" id="edit_times_list" onchange="timeData(event);">
                                         {% for times in times_list %}
                                         <option value="{{ times }}">{{ times }}</option>
