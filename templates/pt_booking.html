@@ -12,7 +12,7 @@
                 You can book personal training or gym sessions.
             </p>
 
-            <form action="/create_personal_training_session">
+            <form action="/create_personal_training_session" onsubmit="return checkDateSelected()">
                 <input type="date" id="personal_training_dates" onchange="dateData(event);" />
                 <input type="hidden" id="personal_training_date" name="personal_training_date" value=''>
 
@@ -26,7 +26,7 @@
                 <button type="submit" class="btn btn-primary" value="Book">Book</button>
             </form>
 
-            <p>{{ session_message }}</p>
+            <p id="date_error_message" style="color:red"></p>
 
             <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editBookingModal">
                 Edit Booking</button>

@@ -138,6 +138,15 @@
             document.getElementById("personal_training_date").value = personalTrainingDate.value;
         }
 
+        function checkDateSelected() {
+            const personalTrainingDate = document.getElementById("personal_training_dates");
+            if (personalTrainingDate.value == "") {
+                document.getElementById("date_error_message").innerHTML = "Please select a date";
+                return false;
+            }
+
+        }
+
         setTimeout(function () {
             let messages = document.getElementById('msg');
             let alert = new bootstrap.Alert(messages);

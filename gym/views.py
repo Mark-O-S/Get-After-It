@@ -4,29 +4,12 @@ from datetime import datetime, timedelta
 from django.contrib import messages
 
 
-TIMES = {f"{time}": "test" for time in range(7, 22)}
 TIMES_LIST = [f"{time}:00" for time in range(7, 22)]
 CONVERT_AM_PM = {"p.m.": "PM", "a.m.": "AM"}
-WEEK_LONG = 7
 
 
 def Home(request):
     return render(request, "index.html")
-
-
-# Set up personal training week
-def set_up_pt_week():
-    pt_week = {}
-    datetime_now = datetime.today()
-
-    # Get all datetimes from today to the next 7 days
-    week_from_today = [datetime_now +
-                       timedelta(days=num) for num in range(WEEK_LONG)]
-
-    # Get all dates from today to the next 7 days and set times as the value
-    for day in week_from_today:
-        pt_week[day.date()] = TIMES
-    return pt_week
 
 
 def get_personal_training_sessions(user):
@@ -68,7 +51,7 @@ def update_personal_training(user, current_datetime, new_datetime):
         personal_training_object = PersonalTraining.objects.filter(
             pk=primary_key, booked_by=user, date_time=current_datetime).update(
             date_time=new_datetime)
-    except:
+    except PersonalTraining.DoesNotExist:
         return {}
     return personal_training_object
 
@@ -122,7 +105,7 @@ def create_personal_training_session(request):
         return render(request, redirect_url, context)
 
 
-# Parameter example: June 28, 2023, 7 a.m., Parameter example: June 28, 2023, noon
+# Parameter ex.: June 28, 2023, 7 a.m., Parameter example: June 28, 2023, noon
 def convert_date_time(date_time):
     convert = date_time.split(" ")
     # This value is noon if not a.m. or p.m.
@@ -185,7 +168,7 @@ def update_personal_training_session(request):
 
         converted_current_hour = converted_current_date_time.hour
         current_time = f"{converted_current_hour}:00"
-        # If the current time and new time match, no update happens - exit early
+        # If current time and new time match, no update happens - exit early
         if current_time == new_time:
             session_message = "This session is already booked"
             messages.add_message(request, messages.INFO, session_message)
@@ -205,7 +188,7 @@ def update_personal_training_session(request):
             personal_training_data = PersonalTraining.objects.get(
                 date_time=new_datetime)
             personal_training_data = {personal_training_data}
-            session_message = f"This session is not available to book {new_datetime} {personal_training_data}"
+            session_message = f"The session time {new_time} is not available to book"
             messages.add_message(request, messages.ERROR, session_message)
         except PersonalTraining.DoesNotExist:
             # Session is available to book for the user
