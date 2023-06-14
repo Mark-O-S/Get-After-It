@@ -28,34 +28,25 @@
 
             <p>{{ session_message }}</p>
 
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editBookingModal">
                 Edit Booking</button>
+            
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteBookingModal">
+                Delete Booking</button>
 
             <h3>Bookings made</h3>
             <h4> Date and time: </h4>
             {% for sessions in booked_sessions %}
             <p> {{ sessions.date_time }}</p>
-            <table>
-                <tr>
-                    <td>
-                        <form action="/delete_personal_training_session">
-                            <button type="submit" class="btn btn-primary">Delete Booking</button>
-                            <input type="hidden" id="delete_session" name="delete_session"
-                                value='{{ sessions.date_time }}'>
-                            <p></p>
-                        </form>
-                    </td>
-                </tr>
-            </table>
             {% endfor %}
 
             <!-- Edit Booking Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="editBookingModal" tabindex="-1" aria-labelledby="editBookingModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Booking</h5>
+                            <h5 class="modal-title" id="editBookingModalLabel">Edit Booking</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
@@ -77,6 +68,33 @@
                                         {% endfor %}
                                     </select>
                                     <input type="hidden" id="hidden_date_time" name="hidden_date_time" value=''>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Booking Modal -->
+            <div class="modal fade" id="deleteBookingModal" tabindex="-1" aria-labelledby="deleteBookingModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteBookingModalLabel">Delete Booking</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+            
+                        <div class="modal-body">
+                            <form action="/delete_personal_training_session">
+                                <div class="row">
+                                    <p>Choose a booked Personal training session</p>
+                                    <select name="delete_session" id="delete_session">
+                                        {% for sessions in booked_sessions %}
+                                        <option value="{{ sessions.date_time }}">{{ sessions.date_time }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
