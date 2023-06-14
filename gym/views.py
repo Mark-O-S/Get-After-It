@@ -122,11 +122,15 @@ def create_personal_training_session(request):
         return render(request, redirect_url, context)
 
 
-# Parameter example: June 28, 2023, 7 a.m.
+# Parameter example: June 28, 2023, 7 a.m., Parameter example: June 28, 2023, noon
 def convert_date_time(date_time):
     convert = date_time.split(" ")
-    am_pm = CONVERT_AM_PM[convert[-1]]
-    convert[-1] = am_pm
+    # This value is noon if not a.m. or p.m.
+    if convert[-1] not in CONVERT_AM_PM:
+        convert[-1] = '12PM'
+    else:
+        am_pm = CONVERT_AM_PM[convert[-1]]
+        convert[-1] = am_pm
     date_time = "".join(convert)
 
     datetime_object = datetime.strptime(date_time, "%B%d,%Y,%I%p")
@@ -157,7 +161,7 @@ def delete_personal_training_session(request):
             'booking_status': session_message,
             'time': date_time,
         }
-        return render(request, "pt_delete_session.html", context)
+        return render(request, "pt_booking_session.html", context)
 
 
 # Check if the user is trying to book the same time, return error is yes
@@ -175,6 +179,7 @@ def update_personal_training_session(request):
         redirect_url = "pt_booking.html"
         new_datetime = convert_date_time_with_new_time(
             current_booking_datetime, new_time)
+
         converted_current_date_time = convert_date_time(
             current_booking_datetime)
 
@@ -211,7 +216,7 @@ def update_personal_training_session(request):
             personal_training_data = {booked_session}
             session_message = "Personal Training Session successfully updated"
             messages.add_message(request, messages.INFO, session_message)
-            redirect_url = "pt_update_session.html"
+            redirect_url = "pt_booking_session.html"
 
         context = {
             'session_message': session_message,
