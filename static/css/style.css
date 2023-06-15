@@ -13,9 +13,11 @@ body {
 
 /* Footer */
 footer {
-    margin: auto 30px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #D6DFE0;
 }
-
 
 footer i {
     font-size: 2rem;
@@ -26,6 +28,13 @@ footer i:hover {
     opacity: 0.7;
 }
 
+
+/* Hero image */
+#hero-img {
+    margin-bottom: 30px;
+}
+
+
 /* Jumbotron box */
 .jumbotron {
     padding: 30px;
@@ -34,14 +43,17 @@ footer i:hover {
     background-color: rgba(128, 128, 128, 0.3);
 }
 
+
 /* About Us*/
 #about-us-section {
+    margin-bottom: 130px;
     padding: 20px;
     border: 3px solid;
     border-radius: 12px;
     width: 40%;
     background-color: #B5D9D1;
 }
+
 
 /* Opening times */
 #opening-times {
@@ -57,8 +69,14 @@ footer i:hover {
     font-weight: bold;
 }
 
+.open-time {
+    margin-bottom: 130px;
+}
+
+
 /* Book session */
 #book-session-link-btn {
+    margin-bottom: 130px;
     padding: 20px;
     border: 3px solid;
     border-radius: 12px;
@@ -66,8 +84,16 @@ footer i:hover {
     background-color: #8DB6CD;
 }
 
-/* Logout Page */
-#logout-page {
+
+/* Edit booking modal */
+#editBookingModal {
+    border: 3px solid #000000;
+    padding: 20px;
+}
+
+
+/* Sign Up & Logout Page */
+.sign-form-page {
     border: 3px solid #000000;
     padding: 20px;
     background-color: #B5D9D1;
