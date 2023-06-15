@@ -40,12 +40,10 @@ def book_personal_training(user, datetime):
     personal_training_object.save()
     return personal_training_object
 
+
 # '2023-06-14'
-
-
 # '2023-06-14'
 def checkDateIsLaterThanOrEqualToTodaysDate(date):
-    #convertDate = datetime.strptime(date, '%Y-%m-%d')
     todaysDate = datetime.today()
     return date.date() >= todaysDate.date()
 
@@ -72,6 +70,12 @@ def format_datetime(date, time):
     return date_time
 
 
+# June 28, 2023, 7 a.m.
+def convert_datetime_for_display(datetime):
+    return f"{datetime.strftime('%B')} {datetime.day}, \
+        {datetime.year}, {datetime.hour}:00 "
+
+
 def create_personal_training_session(request):
     personal_training_booked_sessions = get_personal_training_sessions(
         request.user)
@@ -85,6 +89,7 @@ def create_personal_training_session(request):
         personal_training_data = {}
         session_message = ""
         redirect_url = "pt_booking.html"
+        date_message = ""
 
         isDateLater = checkDateIsLaterThanOrEqualToTodaysDate(filter_datetime)
         if isDateLater is False:
@@ -113,7 +118,8 @@ def create_personal_training_session(request):
             booked_session = book_personal_training(request.user,
                                                     filter_datetime)
             personal_training_data = {booked_session}
-            session_message = "Personal Training Session successfully booked"
+            session_message = "Personal Training Session successfully booked!"
+            date_message = booked_session.date_time
             messages.add_message(request, messages.INFO, session_message)
             redirect_url = "pt_booking_session.html"
 
@@ -123,7 +129,8 @@ def create_personal_training_session(request):
             'booking_date': personal_training_data,
             'time': time,
             'times_list': TIMES_LIST,
-            'booked_sessions': personal_training_booked_sessions
+            'booked_sessions': personal_training_booked_sessions,
+            'date_message': date_message
         }
         return render(request, redirect_url, context)
 
@@ -158,14 +165,16 @@ def delete_personal_training_session(request):
         form = request.GET
         date_time = form["delete_session"]
         converted_date_time = convert_date_time(date_time)
+        date_message= ""
         PersonalTraining.objects.filter(date_time=converted_date_time).delete()
 
-        session_message = "Personal Training Session successfully deleted"
+        session_message = "Personal Training Session successfully deleted!"
         messages.add_message(request, messages.INFO, session_message)
         context = {
             'session_message': session_message,
             'booking_status': session_message,
             'time': date_time,
+            'date_message': date_time
         }
         return render(request, "pt_booking_session.html", context)
 
@@ -183,6 +192,7 @@ def update_personal_training_session(request):
         personal_training_data = {}
         session_message = ""
         redirect_url = "pt_booking.html"
+        date_message = ""
         new_datetime = convert_date_time_with_new_time(
             current_booking_datetime, new_time)
 
@@ -220,7 +230,8 @@ def update_personal_training_session(request):
             booked_session = update_personal_training(
                 request.user, converted_current_date_time, new_datetime)
             personal_training_data = {booked_session}
-            session_message = "Personal Training Session successfully updated"
+            date_message = convert_datetime_for_display(new_datetime)
+            session_message = "Personal Training Session successfully updated!"
             messages.add_message(request, messages.INFO, session_message)
             redirect_url = "pt_booking_session.html"
 
@@ -230,5 +241,6 @@ def update_personal_training_session(request):
             'times_list': TIMES_LIST,
             'personal_training_data': personal_training_data,
             'booked_sessions': personal_training_booked_sessions,
+            'date_message': date_message
         }
         return render(request, redirect_url, context)

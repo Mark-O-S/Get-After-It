@@ -3,13 +3,13 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="container">
+<div class="sign-form-page container text-center">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2 text-dark">
 
             <h3>Personal Training</h3>
-            <p>Welcome to Get After It. If you have not created an account yet, then please
-                You can book personal training or gym sessions.
+            <p>
+                Hello, there are only one space available for each timeslot!
             </p>
 
             <form action="/create_personal_training_session" onsubmit="return checkDateSelected()">

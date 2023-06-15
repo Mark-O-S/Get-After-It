@@ -48,12 +48,15 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/pt_booking">Classes</a>
+                        <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Opening Hours</a>
+                        <a class="nav-link" href="#">Opening Times</a>
                     </li>
                     {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pt_booking">Bookings</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
                     </li>
@@ -136,6 +139,7 @@
         function dateData(event) {
             const personalTrainingDate = document.getElementById("personal_training_dates");
             document.getElementById("personal_training_date").value = personalTrainingDate.value;
+            document.getElementById("date_error_message").innerHTML = "";
         }
 
         function checkDateSelected() {
@@ -143,9 +147,20 @@
             if (personalTrainingDate.value == "") {
                 document.getElementById("date_error_message").innerHTML = "Please select a date";
                 return false;
+            } else {
+                document.getElementById("date_error_message").innerHTML = "";
+                return true;
             }
 
         }
+
+
+        function hideSubmit() {
+            const personalTrainingDate = document.getElementById("personal_training_dates");
+            elem.style.display = 'none';
+            // elem.style.visibility = 'hidden';
+        };
+
 
         setTimeout(function () {
             let messages = document.getElementById('msg');

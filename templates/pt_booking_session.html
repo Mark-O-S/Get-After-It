@@ -3,18 +3,17 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="container">
+<div class="sign-form-page container">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2 text-dark">
 
             <h3>Personal Training</h3>
-            <p>Welcome to Get After It. If you have not created an account yet, then please
-                You can book personal training or gym sessions.
-            </p>
+            <h4>Get After It</h4>
 
-            <p>{{ booking_date }}</p>
-            <p>{{ time }}</p>
             <p>{{ booking_status }}</p>
+            <p>Date and Time:</p>
+            <p><strong>{{ date_message }}</strong></p>
+
             <a type="submit" class="btn btn-primary" value="Back to booking" href="/pt_booking" method="GET">
                 Back to booking</a>
         </div>
