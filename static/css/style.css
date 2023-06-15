@@ -63,7 +63,14 @@ footer i:hover {
     border: 3px solid;
     border-radius: 12px;
     width: 40%;
-    
+    background-color: #8DB6CD;
+}
+
+/* Logout Page */
+#logout-page {
+    border: 3px solid #000000;
+    padding: 20px;
+    background-color: #B5D9D1;
 }
 
 /* Media Queries */
@@ -85,4 +92,10 @@ footer i:hover {
     #about-us-section {
         width: 75%;
     }
+
+    /* Book session */
+    #book-session-link-btn {
+        width: 75%;
+    }
+
 }
