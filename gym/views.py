@@ -40,6 +40,15 @@ def book_personal_training(user, datetime):
     personal_training_object.save()
     return personal_training_object
 
+# '2023-06-14'
+
+
+# '2023-06-14'
+def checkDateIsLaterThanOrEqualToTodaysDate(date):
+    #convertDate = datetime.strptime(date, '%Y-%m-%d')
+    todaysDate = datetime.today()
+    return date.date() >= todaysDate.date()
+
 
 def update_personal_training(user, current_datetime, new_datetime):
     try:
@@ -76,6 +85,20 @@ def create_personal_training_session(request):
         personal_training_data = {}
         session_message = ""
         redirect_url = "pt_booking.html"
+
+        isDateLater = checkDateIsLaterThanOrEqualToTodaysDate(filter_datetime)
+        if isDateLater is False:
+            session_message = "Please choose today's date or a later date to book."
+            messages.add_message(request, messages.ERROR, session_message)
+            context = {
+                'session_message': session_message,
+                'booking_status': session_message,
+                'booking_date': personal_training_data,
+                'time': time,
+                'times_list': TIMES_LIST,
+                'booked_sessions': personal_training_booked_sessions
+            }
+            return render(request, redirect_url, context)
 
         # Check if the date and time user chose is available
         try:
