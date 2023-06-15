@@ -1,43 +1,67 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# **Get After It - Project Portfolio 4**
 
-Welcome,
+This is a gym website in which members can book a limited space personal training sessions.
 
-This is the Code Institute student template for Codeanywhere. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+You can view the live site here: [Get After It](https://insert-website-here)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **May 11th, 2023**
+# User Experience (UX)
 
-## Codeanywhere Reminders
+## Agile Methodology
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+This project was planned by using Agile Methodology. This was implemented through the use of the kanban board in the project views in Github.
 
-`python3 -m http.server`
+### Site Goals
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+- To provide the user with a website that will give information of the gym's opening times.
+  
+- To give site viewers the option to register and become members if they choose to do so.
+  
+- To allow members of the gym to book/edit/cancel personal training sessions online.
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+### User Stories
 
-`http_server`
+- As a user, I can view the page in its entirety and be able to use the navigation bar to easily access the main content of the page.
+  
+- As a user, I want to be able to register to become a member.
+  
+- As a user, I want to be able to log in if I am already a member.
+  
+- As a member, I want to be able to book Personal Training sessions.
+  
+- As a member, I want to be able to delete my current bookings if I want to cancel it.
+  
+- As a member, I want to be able to edit and change my current booking.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Wireframes
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+<details>
+<summary>Mobile wireframes</summary>
+</details>
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+<details>
+<summary>Desktop wireframes</summary>
+</details>
 
-To log into the Heroku toolbelt CLI:
+# Features
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## Navigation
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+- The navigation bar is at the top of each page. It displays the logo and name of the website on the top left.
+- The navigation bar also contains a button that allows the user to register/login and to book a session depening on if the user is currently logged in or not.
 
----
+## Home page
 
-Happy coding!
+- This section contains the main content of the website.
+- This section allows the option for the user to either Register or Log In.
+- This section provides information regarding the opening times.
 
-# ** Get After It - Project Portfolio 4**
+## Booking session
 
-This is a gym booking website where members are able to book limited spaces fitness classes and personal training sessions.
+- This section is for registered members and it allows them to book session timeslots.
+- It allows members with a current booking to edit or delete their bookings.
+
+# Technologies Used
+
+## Languages
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML5#:~:text=HTML5%20is%20a%20markup%20language,as%20the%20HTML%20Living%20Standard.) - Used to structure the content and structure for the website.
