@@ -99,6 +99,13 @@ footer i:hover {
     background-color: #B5D9D1;
 }
 
+
+/* Confirm deletion button */
+#confirm-delete-button.btn.btn-primary {
+    display: none;
+}
+
+
 /* Media Queries */
 /* For screen sizes with a maximum width of 767px */
 @media (max-width: 767px) {

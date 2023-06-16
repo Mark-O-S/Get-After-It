@@ -48,10 +48,10 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#about-us-section">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Opening Times</a>
+                        <a class="nav-link" href="#opening-times">Opening Times</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -164,13 +164,13 @@
         };
 
         function showConfirmDeletionButton() {
-            var button = document.getElementById("confirm_delete_button");
-            button.style.display = "none";
+            var button = document.getElementById("confirm-delete-button");
+            button.style.display = "inline";
         };
 
         function hideConfirmDeletionButton() {
-            var button = document.getElementById("confirm_delete_button");
-            button.style.display = "block";
+            var button = document.getElementById("confirm-delete-button");
+            button.style.display = "none";
         };
 
         setTimeout(function () {
