@@ -151,16 +151,16 @@
                 const time = document.getElementById("times_list").value;
                 // Set up datetime chosen
                 const date = personalTrainingDate.value.split("-");
-                const year = date[0]
+                const year = date[0];
                 // Month index starts at 00 for the Data Object
-                const month = Number(date[1])-1
-                const day = date[2]
+                const month = Number(date[1]) - 1;
+                const day = date[2];
                 const chosenHour = time.split(":")[0];
                 const dateObject = new Date(year, month, day, chosenHour);
                 const todayObject = new Date();
                 if (dateObject > todayObject) {
                     document.getElementById("date_error_message").innerHTML = "";
-                    return false;
+                    return true;
                 }
                 document.getElementById("date_error_message").innerHTML = "Please select anytime after this hour";
                 return false;

@@ -92,13 +92,14 @@
 
 <!-- If user is logged in, allow option to book a session -->
 {% if user.is_authenticated %}
+<form action="/pt_booking" method="GET">
 <div class="container-fluid text-center" id="book-session-link-btn">
     <div class="row">
         <div class="col">
             <h1>Book a Session</h1>
             <p>Click the button below to book a Personal Training Session!</p>
             <div>
-                <button id="personal-training" href="pt_booking.html">
+                <button submit="/pt_booking" id="personal-training" href="pt_booking.html">
                     Personal Training
                 </button>
             </div>
@@ -106,6 +107,5 @@
     </div>
 </div>
 {% endif %}
-
 
 {%endblock%}
