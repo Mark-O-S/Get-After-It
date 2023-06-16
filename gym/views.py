@@ -10,7 +10,7 @@ CONVERT_AM_PM = {"p.m.": "PM", "a.m.": "AM"}
 
 def Home(request):
     return render(request, "index.html")
-
+ 
 
 def get_personal_training_sessions(user):
     personal_trainings = PersonalTraining.objects.filter(

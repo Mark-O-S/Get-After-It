@@ -134,25 +134,39 @@
         function timeData(event) {
             const times_list = document.getElementById("times_list");
             document.getElementById("time_chosen").value = times_list.value;
-        }
+        };
 
         function dateData(event) {
             const personalTrainingDate = document.getElementById("personal_training_dates");
             document.getElementById("personal_training_date").value = personalTrainingDate.value;
             document.getElementById("date_error_message").innerHTML = "";
-        }
+        };
 
-        function checkDateSelected() {
+        function checkDateTimeSelected() {
             const personalTrainingDate = document.getElementById("personal_training_dates");
             if (personalTrainingDate.value == "") {
                 document.getElementById("date_error_message").innerHTML = "Please select a date";
                 return false;
             } else {
-                document.getElementById("date_error_message").innerHTML = "";
-                return true;
+                const time = document.getElementById("times_list").value;
+                // Set up datetime chosen
+                const date = personalTrainingDate.value.split("-");
+                const year = date[0]
+                // Month index starts at 00 for the Data Object
+                const month = Number(date[1])-1
+                const day = date[2]
+                const chosenHour = time.split(":")[0];
+                const dateObject = new Date(year, month, day, chosenHour);
+                const todayObject = new Date();
+                if (dateObject > todayObject) {
+                    document.getElementById("date_error_message").innerHTML = "";
+                    return false;
+                }
+                document.getElementById("date_error_message").innerHTML = "Please select anytime after this hour";
+                return false;
             }
 
-        }
+        };
 
 
         function hideSubmit() {

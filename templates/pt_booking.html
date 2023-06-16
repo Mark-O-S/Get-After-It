@@ -12,7 +12,7 @@
                 Hello, there are only one space available for each timeslot!
             </p>
 
-            <form action="/create_personal_training_session" onsubmit="return checkDateSelected()">
+            <form action="/create_personal_training_session" onsubmit="return checkDateTimeSelected()">
                 <input type="date" id="personal_training_dates" onchange="dateData(event);" />
                 <input type="hidden" id="personal_training_date" name="personal_training_date" value=''>
 
