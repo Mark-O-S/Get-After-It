@@ -131,12 +131,7 @@
     </footer>
 
     <script>
-        function timeData(event) {
-            const times_list = document.getElementById("times_list");
-            document.getElementById("time_chosen").value = times_list.value;
-        };
-
-        function dateData(event) {
+        function dateData() {
             const personalTrainingDate = document.getElementById("personal_training_dates");
             document.getElementById("personal_training_date").value = personalTrainingDate.value;
             document.getElementById("date_error_message").innerHTML = "";
@@ -168,13 +163,15 @@
 
         };
 
-
-        function hideSubmit() {
-            const personalTrainingDate = document.getElementById("personal_training_dates");
-            elem.style.display = 'none';
-            // elem.style.visibility = 'hidden';
+        function showConfirmDeletionButton() {
+            var button = document.getElementById("confirm_delete_button");
+            button.style.display = "none";
         };
 
+        function hideConfirmDeletionButton() {
+            var button = document.getElementById("confirm_delete_button");
+            button.style.display = "block";
+        };
 
         setTimeout(function () {
             let messages = document.getElementById('msg');

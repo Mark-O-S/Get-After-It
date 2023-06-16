@@ -1,29 +1,21 @@
 from django.shortcuts import render
 from .models import PersonalTraining
-from datetime import datetime, timedelta
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .helpers import *
 
 
 TIMES_LIST = [f"{time}:00" for time in range(7, 22)]
-CONVERT_AM_PM = {"p.m.": "PM", "a.m.": "AM"}
 
 
 def Home(request):
     return render(request, "index.html")
 
 
-def get_personal_training_sessions(user):
-    personal_trainings = PersonalTraining.objects.filter(
-        booked_by=user)
-
-    return personal_trainings
-
-
 @login_required
 def set_up_personal_training_page(request):
     if request.method == 'GET':
-        # Get all pt sessions that the user booked
+        # Get all personal training sessions that the user booked
         personal_training_booked_sessions = get_personal_training_sessions(
             request.user)
 
@@ -35,47 +27,6 @@ def set_up_personal_training_page(request):
         return render(request, "pt_booking.html", context)
 
 
-def book_personal_training(user, datetime):
-    personal_training_object = PersonalTraining.objects.create(
-        date_time=datetime, booked_by=user)
-    personal_training_object.save()
-    return personal_training_object
-
-
-# '2023-06-14'
-def checkDateIsLaterThanOrEqualToTodaysDate(date):
-    todaysDate = datetime.today()
-    return date.date() >= todaysDate.date()
-
-
-def update_personal_training(user, current_datetime, new_datetime):
-    try:
-        current_training_session = PersonalTraining.objects.get(
-            booked_by=user, date_time=current_datetime)
-
-        primary_key = current_training_session.pk
-
-        personal_training_object = PersonalTraining.objects.filter(
-            pk=primary_key, booked_by=user, date_time=current_datetime).update(
-            date_time=new_datetime)
-    except PersonalTraining.DoesNotExist:
-        return {}
-    return personal_training_object
-
-
-def format_datetime(date, time):
-    format_data = "%Y-%m-%d %H:%M:%S"
-    formatted_date = f"{date} {time}:00"
-    date_time = datetime.strptime(formatted_date, format_data)
-    return date_time
-
-
-# June 28, 2023, 7 a.m.
-def convert_datetime_for_display(datetime):
-    return f"{datetime.strftime('%B')} {datetime.day}, \
-        {datetime.year}, {datetime.hour}:00 "
-
-
 def create_personal_training_session(request):
     personal_training_booked_sessions = get_personal_training_sessions(
         request.user)
@@ -85,24 +36,22 @@ def create_personal_training_session(request):
         personal_training_date = form["personal_training_date"]
         time = form["times_list"]
         filter_datetime = format_datetime(personal_training_date, time)
-
-        personal_training_data = {}
-        session_message = ""
         redirect_url = "pt_booking.html"
-        date_message = ""
 
-        isDateLater = checkDateIsLaterThanOrEqualToTodaysDate(filter_datetime)
+        context = {
+            "personal_training_data": {},
+            "session_message": "",
+            "date_message": "",
+            "times_list": TIMES_LIST,
+            "time": time,
+            "booked_sessions": personal_training_booked_sessions
+        }
+
+        isDateLater = is_date_later_than_or_equal_to_todays_date(filter_datetime)
         if isDateLater is False:
-            session_message = "Please choose today's date or a later date to book."
-            messages.add_message(request, messages.ERROR, session_message)
-            context = {
-                'session_message': session_message,
-                'booking_status': session_message,
-                'booking_date': personal_training_data,
-                'time': time,
-                'times_list': TIMES_LIST,
-                'booked_sessions': personal_training_booked_sessions
-            }
+            context["session_message"] = "Please choose today's date or a \
+                                later date to book."
+            messages.add_message(request, messages.ERROR, context["session_message"])
             return render(request, redirect_url, context)
 
         # Check if the date and time user chose is available
@@ -110,54 +59,20 @@ def create_personal_training_session(request):
             personal_training_data = PersonalTraining.objects.get(
                 date_time__date=filter_datetime.date(),
                 date_time__hour=filter_datetime.hour)
-            personal_training_data = {personal_training_data}
-            session_message = "This session is not available"
+            context["personal_training_data"] = {personal_training_data}
+            context["session_message"] = "This session is not available"
             messages.add_message(request, messages.ERROR, session_message)
         except PersonalTraining.DoesNotExist:
             # Session is available to book for the user
             booked_session = book_personal_training(request.user,
                                                     filter_datetime)
-            personal_training_data = {booked_session}
-            session_message = "Personal Training Session successfully booked!"
-            date_message = booked_session.date_time
-            messages.add_message(request, messages.INFO, session_message)
+            context["personal_training_data"] = {booked_session}
+            context["session_message"] = "Personal Training Session successfully booked!"
+            context["date_message"] = booked_session.date_time
+            messages.add_message(request, messages.INFO, context["session_message"])
             redirect_url = "pt_booking_session.html"
 
-        context = {
-            'session_message': session_message,
-            'booking_status': session_message,
-            'booking_date': personal_training_data,
-            'time': time,
-            'times_list': TIMES_LIST,
-            'booked_sessions': personal_training_booked_sessions,
-            'date_message': date_message
-        }
         return render(request, redirect_url, context)
-
-
-# Parameter ex.: June 28, 2023, 7 a.m., Parameter example: June 28, 2023, noon
-def convert_date_time(date_time):
-    convert = date_time.split(" ")
-    # This value is noon if not a.m. or p.m.
-    if convert[-1] not in CONVERT_AM_PM:
-        convert[-1] = '12PM'
-    else:
-        am_pm = CONVERT_AM_PM[convert[-1]]
-        convert[-1] = am_pm
-    date_time = "".join(convert)
-
-    datetime_object = datetime.strptime(date_time, "%B%d,%Y,%I%p")
-    return datetime_object
-
-
-# Parameter example: June 28, 2023, 7 a.m.
-def convert_date_time_with_new_time(date_time, new_time):
-    convert = date_time.split(",")
-    formatted_new_time = f"{new_time}:00"
-    convert[-1] = formatted_new_time
-    date_time = "".join(convert)
-    datetime_object = datetime.strptime(date_time, "%B %d %Y%X")
-    return datetime_object
 
 
 @login_required
@@ -172,7 +87,6 @@ def delete_personal_training_session(request):
         messages.add_message(request, messages.INFO, session_message)
         context = {
             'session_message': session_message,
-            'booking_status': session_message,
             'time': date_time,
             'date_message': date_time
         }
