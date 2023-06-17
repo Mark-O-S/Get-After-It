@@ -293,6 +293,24 @@ Samsung S10+ | No appearance, responsiveness nor functionality issues. | Pass
 | Clicked Log Out in navigation bar | Prompted to see if I am sure that I want to sign out | Pass
 | Confirm click to log out | Fully logged out and redirected into the home page | Pass
 
+- Footer
+
+| Input | Output | Pass/Fail |
+| --- | --- | --- |
+|  Clicked Facebook icon | It opened facebook in a new page | Pass
+|  Clicked Twitter icon | It opened Twitter in a new page | Pass
+|  Clicked Instagram icon | It opened Instagram in a new page | Pass
+
+- Booking
+  
+| Input | Output | Pass/Fail |
+|--- | --- | ---
+| Booked a date and time in the future | Successful Personal Training Session booking | Pass
+| Booked a date and time that has already passed | Prompert to select anytime after the current hour | Pass
+| Click Edit booking and choose a time in the future | Successful Personal Training Session edit booking | Pass
+| Click Edit booking and choose a time in the past | Unsuccessful Personal Training Session edit booking | Pass
+| Click Delete booking and choose a time that is currently booked | Successfully deleted | Pass
+
 
 **[Back to Top](#table-of-contents)**
 
