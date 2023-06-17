@@ -51,14 +51,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="/update_personal_training_session">
+                            <form action="/update_personal_training_session" onsubmit="return checkEditSessionSelected()">
                                 <div class="row">
                                     <p>Choose a booked Personal training session</p>
-                                    <select name="current_times_list" id="current_times_list">
+                                    <select name="current-times-list" id="current-times-list">
                                         {% for sessions in booked_sessions %}
                                             <option value="{{ sessions.date_time }}">{{ sessions.date_time }}</option>
                                         {% endfor %}
                                     </select>
+                                    <p id="edit-date-error-message" style="color:red"></p>
                                 </div>
                                 <div class="row">
                                     <p>Choose new time</p>
@@ -86,14 +87,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="/delete_personal_training_session">
+                            <form action="/delete_personal_training_session" onsubmit="return checkDeleteSessionSelected()">
                                 <div class="row">
                                     <p>Choose a booked Personal training session</p>
-                                    <select name="delete_session" id="delete_session" onchange="hideConfirmDeletionButton();">
+                                    <select name="delete-session" id="delete-session" onchange="hideConfirmDeletionButton();">
                                         {% for sessions in booked_sessions %}
                                             <option value="{{ sessions.date_time }}">{{ sessions.date_time }}</option>
                                         {% endfor %}
                                     </select>
+                                    <p id="delete-date-error-message" style="color:red"></p>
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button id="save-delete-button" type="button" class="btn btn-info" onclick="showConfirmDeletionButton();">Delete Booking</button>

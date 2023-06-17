@@ -48,10 +48,10 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about-us-section">About</a>
+                        <a class="nav-link" href="/#about-us-section">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#opening-times">Opening Times</a>
+                        <a class="nav-link" href="/#opening-times">Opening Times</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -159,6 +159,32 @@
                 }
                 document.getElementById("date_error_message").innerHTML = "Please select anytime after this hour";
                 return false;
+            }
+
+        };
+
+        function checkEditSessionSelected() {
+            const editSessionDropdown = document.getElementById("current-times-list");
+            const datetime = editSessionDropdown.value;
+            if (datetime == "") {
+                document.getElementById("edit-date-error-message").innerHTML = "There is no date selected";
+                return false;
+            } else {
+                document.getElementById("edit-date-error-message").innerHTML = "";
+                return true;
+            }
+
+        };
+
+        function checkDeleteSessionSelected() {
+            const deleteSessionDropdown = document.getElementById("delete-session");
+            const datetime = deleteSessionDropdown.value;
+            if (datetime == "") {
+                document.getElementById("delete-date-error-message").innerHTML = "There is no date selected";
+                return false;
+            } else {
+                document.getElementById("delete-date-error-message").innerHTML = "";
+                return true;
             }
 
         };

@@ -83,7 +83,7 @@ def create_personal_training_session(request):
 def delete_personal_training_session(request):
     if request.GET:
         form = request.GET
-        date_time = form["delete_session"]
+        date_time = form["delete-session"]
         converted_date_time = convert_date_time(date_time)
         PersonalTraining.objects.filter(date_time=converted_date_time).delete()
 
@@ -106,7 +106,7 @@ def update_personal_training_session(request):
         request.user)
     if request.GET:
         form = request.GET
-        current_booking_datetime = form["current_times_list"]
+        current_booking_datetime = form["current-times-list"]
         new_time = form["edit_times_list"]
         redirect_url = "pt_booking.html"
 
