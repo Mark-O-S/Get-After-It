@@ -65,3 +65,4 @@ This project was planned by using Agile Methodology. This was implemented throug
 ## Languages
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5#:~:text=HTML5%20is%20a%20markup%20language,as%20the%20HTML%20Living%20Standard.) - Used to structure the content and structure for the website.
+- 

@@ -35,7 +35,7 @@
             <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteBookingModal">
                 Delete Booking</button>
 
-            <h3>Bookings made</h3>
+            <h3>Current Bookings</h3>
             <h4> Date and time: </h4>
             {% for sessions in booked_sessions %}
                 <p> {{ sessions.date_time }}</p>
