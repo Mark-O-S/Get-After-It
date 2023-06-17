@@ -13,6 +13,8 @@ You can view the live site here: [Get After It](https://get-after-it-pp4.herokua
     - [Site Goals](#site-goals)
     - [User Stories](#user-stories)
   - [Wireframes](#wireframes)
+    - [***Mobile wireframes***](#mobile-wireframes)
+    - [***Desktop wireframes***](#desktop-wireframes)
 - [Features](#features)
   - [Navigation](#navigation)
   - [Home page](#home-page)
@@ -59,11 +61,10 @@ This project was planned by using Agile Methodology. This was implemented throug
 
 Wireframes for the website was created using [Balsamiq](https://balsamiq.com/wireframes/).
 
-<details>
+### ***Mobile wireframes***
 
-<summary>Mobile wireframes</summary>
 ![Mobile - Hero image](static/images/wireframes/mobile-hero-img.png)
-![Mobile - About section](static/images/wireframes/mobile-about-section.png)
+![Mobile- About section](static/images/wireframes/mobile-about-section.png)
 ![Mobile - opening time](static/images/wireframes/mobile-opening-time.png)
 ![Mobile - Book a session form](static/images/wireframes/mobile-book-a-session-form.png)
 ![Mobile - Book session](static/images/wireframes/mobile-book-session.png)
@@ -71,10 +72,8 @@ Wireframes for the website was created using [Balsamiq](https://balsamiq.com/wir
 ![Mobile - Delete booking](static/images/wireframes/mobile-delete-booking.png)
 ![Mobile - Sign up](static/images/wireframes/mobile-sign-up.png)
 ![Mobile - Login](static/images/wireframes/mobile-login.png)
-</details>
-<details>
 
-<summary>Desktop wireframes</summary>
+### ***Desktop wireframes***
 ![Desktop - Hero image](static/images/wireframes/desktop-hero-img.png)
 ![Desktop - About section](static/images/wireframes/desktop-about-section.png)
 ![Desktop - opening time](static/images/wireframes/desktop-opening-time.png)
@@ -84,7 +83,7 @@ Wireframes for the website was created using [Balsamiq](https://balsamiq.com/wir
 ![Desktop - Delete booking](static/images/wireframes/desktop-delete-booking.png)
 ![Desktop - Sign up](static/images/wireframes/desktop-sign-up.png)
 ![Desktop - Login](static/images/wireframes/desktop-login.png)
-</details>
+
 
 **[Back to Top](#table-of-contents)**
 
