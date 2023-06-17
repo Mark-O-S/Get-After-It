@@ -72,11 +72,11 @@ def update_personal_training(user, current_datetime, new_datetime):
     return personal_training_object
 
 
-def get_personal_training_sessions(user):
-    personal_trainings = PersonalTraining.objects.filter(
-        booked_by=user)
-
-    return personal_trainings
+def update_personal_training(user, current_datetime, new_datetime):
+    personal_training_object = PersonalTraining.objects.filter(
+        booked_by=user, date_time=current_datetime).update(
+        date_time=new_datetime)
+    return personal_training_object
 
 
 def get_future_personal_training_sessions(user):
