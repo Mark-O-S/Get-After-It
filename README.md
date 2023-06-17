@@ -57,9 +57,34 @@ This project was planned by using Agile Methodology. This was implemented throug
 
 ## Wireframes
 
-<details><summary>Mobile wireframes</summary></details>
+Wireframes for the website was created using [Balsamiq](https://balsamiq.com/wireframes/).
 
-<details><summary>Desktop wireframes</summary></details>
+<details>
+
+<summary>Mobile wireframes</summary>
+![Mobile - Hero image](static/images/wireframes/mobile-hero-img.png)
+![Mobile - About section](static/images/wireframes/mobile-about-section.png)
+![Mobile - opening time](static/images/wireframes/mobile-opening-time.png)
+![Mobile - Book a session form](static/images/wireframes/mobile-book-a-session-form.png)
+![Mobile - Book session](static/images/wireframes/mobile-book-session.png)
+![Mobile - Edit booking](static/images/wireframes/mobile-edit-booking.png)
+![Mobile - Delete booking](static/images/wireframes/mobile-delete-booking.png)
+![Mobile - Sign up](static/images/wireframes/mobile-sign-up.png)
+![Mobile - Login](static/images/wireframes/mobile-login.png)
+</details>
+<details>
+
+<summary>Desktop wireframes</summary>
+![Desktop - Hero image](static/images/wireframes/desktop-hero-img.png)
+![Desktop - About section](static/images/wireframes/desktop-about-section.png)
+![Desktop - opening time](static/images/wireframes/desktop-opening-time.png)
+![Desktop - Book a session form](static/images/wireframes/desktop-book-a-session-form.png)
+![Desktop - Book session](static/images/wireframes/desktop-book-session.png)
+![Desktop - Edit booking](static/images/wireframes/desktop-edit-session.png)
+![Desktop - Delete booking](static/images/wireframes/desktop-delete-booking.png)
+![Desktop - Sign up](static/images/wireframes/desktop-sign-up.png)
+![Desktop - Login](static/images/wireframes/desktop-login.png)
+</details>
 
 **[Back to Top](#table-of-contents)**
 
